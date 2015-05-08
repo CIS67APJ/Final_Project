@@ -1,8 +1,9 @@
 var express = require('express'),
     User = require('./models/users'),
+    middleware = require('./middleware/middleware'),
     app = express();
 
-app.get('/', function(req,res)
+app.get('/', middleware.isAuthenticated, function(req,res)
 {
     res.render('login.ejs', 
     {
