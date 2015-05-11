@@ -6,6 +6,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     config = require('./config'),
     loginApp = require('./controllers/login'),
+    homepageApp = require('./controllers/homepage'),
     // client = require('twitter'),
     app = express();
     

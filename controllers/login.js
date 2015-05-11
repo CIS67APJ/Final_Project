@@ -60,8 +60,6 @@ app.post('/newuser', function(req, res) {
     }
 });
 
-app.get('/homepage', isAuthenticated, function(req, res) {
-   res.send("you did it") 
-});
+
 
 module.exports = app;
