@@ -15,25 +15,20 @@ app.get('/', isAuthenticated, function(req,res)
     });
 });
 
-// app.post('/', function(req,res)
-// {
-//     var username = req.param('username');
-//     var password = req.param('password');
-//     UserModel.find({username}).exec(function(err,res)
-//     {
-//         if(!err){
-//             if(password != UserModel.password){
-//                 req.flash("error", "Incorrect username/password");
-//                 res.redirect('/');
-//             } else {
-//                 res.redirect('/homepage');
-//             }
-//         } else {
-//             req.flash("error", "Incorrect username/password");
-//             res.redirect('/');
-//         }
-//     }
-// );
+app.post('/', function(req, res){
+    var username = req.params('username');
+    var password = req.params('password');
+    UserModel.getAuthenticated(username, password, function(err, user, reason){
+        if(err) throw err;
+        if(!user){
+            req.flash("error", "Invalid username/password");
+            res.redirect('/');
+        } else {
+            req.flash("success", "You have successfully logged in");
+            res.redirect('/homepage');
+        }
+    });
+});
 
 app.get('/newuser', function(req, res){
    res.render('newUser.ejs', {
