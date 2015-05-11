@@ -4,8 +4,9 @@ var express = require('express'),
     bodyparser = require('body-parser'),
     flash = require('connect-flash'),
     mongoose = require('mongoose'),
-    config = require('config.json'),
+    config = require('./config'),
     loginApp = require('./controllers/login'),
+    // client = require('twitter'),
     app = express();
     
 app.use(session({
