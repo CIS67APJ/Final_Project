@@ -6,8 +6,6 @@ var express = require('express'),
     mongoose = require('mongoose'),
     config = require('./config'),
     loginApp = require('./controllers/login'),
-    homepageApp = require('./controllers/homepage'),
-    client = require('twitter'),
     app = express();
     
 app.use(session({
@@ -18,7 +16,7 @@ app.use(bodyparser());
 app.use(flash());
 
 app.use(loginApp);
-app.use(homepageApp);
+
 
 mongoose.connect(config.database.url);
 

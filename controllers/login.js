@@ -1,6 +1,8 @@
 var express = require('express'),
     middleware = require('../middleware/middleware'),
     User = require('../models/users'),
+    unirest = require('unirest'),
+    querystring = require('querystring'),
     app = express();
 
 var isAuthenticated = middleware.isAuthenticated;
@@ -30,6 +32,7 @@ app.post('/', function(req, res){
        } else {
            if(user.password == password){
                req.session.user = user;
+               req.flash("success", "You have successfully logged in.");
                res.redirect('/restricted');
            } else {
                req.flash("error", "Invalid Username/Password");
@@ -47,27 +50,40 @@ app.get('/newuser', function(req, res){
 
 app.post('/newuser', function(req, res) {
     var username = req.param('username');
-    var password = req.param('password');
+    var password = req.param('password'),
+        password2 = req.param('password2');
+    if(password == password2){
         if(username && password){
-        var newUser = new User();
-        newUser.username = username;
-        newUser.password = password;
-        newUser.save(function(err, Users){
-            if(!err){
-                req.flash("success", "User Created");
-                res.redirect('/');
-            } else {
-                req.flash("error", "Account NOT created");
-                res.redirect('/newuser');
-            }
-        });
+            var newUser = new User();
+            newUser.username = username;
+            newUser.password = password;
+            newUser.save(function(err, Users){
+                if(!err){
+                    req.flash("success", "User Created");
+                    res.redirect('/');
+                } else {
+                    req.flash("error", "Account NOT created");
+                    res.redirect('/newuser');
+                }
+            });
+        }
+    } else {
+        req.flash("error", "Passwords do not match");
+        res.redirect('/newuser');
     }
 });
 
 app.get('/restricted', sessionAuthMiddleware, function(req, res) {
-    res.render('restricted.ejs', {});
+    res.render('restricted.ejs', {
+        success: req.flash("success")
+    });
 });
 
+app.get('/logout', function(req, res){
+   req.session.user = null;
+   req.flash('info', "You have been logged out.");
+   res.redirect('/');
+});
 
 
 module.exports = app;
