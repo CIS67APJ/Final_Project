@@ -1,9 +1,12 @@
 var express = require('express'),
     middleware = require('../middleware/middleware'),
-    UserModel = require('../models/users'),
+    User = require('../models/users'),
     app = express();
 
 var isAuthenticated = middleware.isAuthenticated;
+var sessionAuthMiddleware = middleware.sessionAuthMiddleware;
+
+
 
 app.get('/', isAuthenticated, function(req,res)
 {
@@ -16,17 +19,23 @@ app.get('/', isAuthenticated, function(req,res)
 });
 
 app.post('/', function(req, res){
-    var username = req.params('username');
-    var password = req.params('password');
-    UserModel.getAuthenticated(username, password, function(err, user, reason){
-        if(err) throw err;
-        if(!user){
-            req.flash("error", "Invalid username/password");
-            res.redirect('/');
-        } else {
-            req.flash("success", "You have successfully logged in");
-            res.redirect('/homepage');
-        }
+    var username = req.param('username');
+    var password = req.param('password');
+    User.findOne({username:username}, function(err, user){
+       if(err){
+           res.redirect('/');
+       } else if (!user) {
+           req.flash("error", "Invalid Username/Password");
+           res.redirect('/');
+       } else {
+           if(user.password == password){
+               req.session.user = user;
+               res.redirect('/restricted');
+           } else {
+               req.flash("error", "Invalid Username/Password");
+               res.redirect('/');
+           }
+       }
     });
 });
 
@@ -40,7 +49,7 @@ app.post('/newuser', function(req, res) {
     var username = req.param('username');
     var password = req.param('password');
         if(username && password){
-        var newUser = new UserModel();
+        var newUser = new User();
         newUser.username = username;
         newUser.password = password;
         newUser.save(function(err, Users){
@@ -53,6 +62,10 @@ app.post('/newuser', function(req, res) {
             }
         });
     }
+});
+
+app.get('/restricted', sessionAuthMiddleware, function(req, res) {
+    res.render('restricted.ejs', {});
 });
 
 
