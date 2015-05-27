@@ -6,6 +6,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     config = require('./config'),
     loginApp = require('./controllers/login'),
+    feedsApp = require('./controllers/feeds'),
     app = express();
     
 app.use(session({
@@ -16,6 +17,13 @@ app.use(bodyparser());
 app.use(flash());
 
 app.use(loginApp);
+app.use(feedsApp);
+
+app.get('/test', function(req, res){
+    res.render('posts.ejs',{
+        success: req.flash('success')
+    })
+});
 
 
 mongoose.connect(config.database.url);

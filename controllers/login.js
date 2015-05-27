@@ -32,8 +32,8 @@ app.post('/', function(req, res){
        } else {
            if(user.password == password){
                req.session.user = user;
-               req.flash("success", "You have successfully logged in.");
-               res.redirect('/restricted');
+               req.flash("success", "Hello, " + username + ". You have successfully logged in.");
+               res.redirect('/feeds');
            } else {
                req.flash("error", "Invalid Username/Password");
                res.redirect('/');
@@ -73,11 +73,11 @@ app.post('/newuser', function(req, res) {
     }
 });
 
-app.get('/restricted', sessionAuthMiddleware, function(req, res) {
-    res.render('restricted.ejs', {
-        success: req.flash("success")
-    });
-});
+// app.get('/link', sessionAuthMiddleware, function(req, res) {
+//     res.render('link.ejs', {
+//         success: req.flash("success")
+//     });
+// });
 
 app.get('/logout', function(req, res){
    req.session.user = null;
