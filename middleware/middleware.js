@@ -11,6 +11,6 @@ module.exports.isAuthenticated = function(req, res, next){
   if(!req.session.user){
       next();
   }  else {
-      res.redirect('/restricted');
+      res.redirect('/feeds');
   }
 };

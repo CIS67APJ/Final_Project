@@ -1,0 +1,59 @@
+<html>
+    <head>
+                <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        
+    </head>
+    <body>
+        <h3><%= success %></h3>
+        <div class="container">
+            <div class="col-xs-4 facebook">
+                <h2>Facebook</h2>
+                <% facebook.forEach(function(post) { %>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3><%= post.story %></h3>
+                            <img src="<%=post.picture %>" />
+                            <p>Name: <span><%= post.name %></span></p>
+                            <p>Description: <span><%= post.description %></span></p>
+                        </div>                        
+                    </div>
+                <% }) %>
+            </div>
+            <div class="col-xs-4 twitter">
+                <h2>Twitter</h2>
+                <!--<% twitPosts.forEach(function(post) { %>-->
+                <!--    <div class="row">-->
+                <!--        <div class="col-xs-12">-->
+                <!--            <p><span><b><%= post.user.name %></b></span></p>-->
+                <!--            <p><%= post.text %></p>-->
+                <!--            <img src="<%=post.picture %>" />-->
+
+                            <!--<p>Description: <span><%= post.description %></span></p>-->
+                <!--        </div>                        -->
+                <!--    </div>-->
+                <!--<% }) %>-->
+            </div>
+            <div class="col-xs-4 instagram">
+                <h2>Instagram</h2>
+                <!--<% facebook.forEach(function(post) { %>-->
+                <!--    <div class="row">-->
+                <!--        <div class="col-xs-12">-->
+                <!--            <h3><%= post.story %></h3>-->
+                <!--            <img src="<%=post.picture %>" />-->
+                <!--            <p>Name: <span><%= post.name %></span></p>-->
+                <!--            <p>Description: <span><%= post.description %></span></p>-->
+                <!--        </div>                        -->
+                <!--    </div>-->
+                <!--<% }) %>-->
+            </div>
+
+        </div>
+    </body>
+</html>

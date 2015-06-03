@@ -1,8 +1,6 @@
 var express = require('express'),
     middleware = require('../middleware/middleware'),
     User = require('../models/users'),
-    unirest = require('unirest'),
-    querystring = require('querystring'),
     app = express();
 
 var isAuthenticated = middleware.isAuthenticated;
@@ -32,8 +30,7 @@ app.post('/', function(req, res){
        } else {
            if(user.password == password){
                req.session.user = user;
-               req.flash("success", "Hello, " + username + ". You have successfully logged in.");
-               res.redirect('/feeds');
+               res.redirect('/FBauth');
            } else {
                req.flash("error", "Invalid Username/Password");
                res.redirect('/');
@@ -73,14 +70,9 @@ app.post('/newuser', function(req, res) {
     }
 });
 
-// app.get('/link', sessionAuthMiddleware, function(req, res) {
-//     res.render('link.ejs', {
-//         success: req.flash("success")
-//     });
-// });
-
 app.get('/logout', function(req, res){
    req.session.user = null;
+   req.user = null;
    req.flash('info', "You have been logged out.");
    res.redirect('/');
 });
