@@ -6,9 +6,14 @@ var express = require('express'),
 var isAuthenticated = middleware.isAuthenticated;
 var sessionAuthMiddleware = middleware.sessionAuthMiddleware;
 
+app.get('/', isAuthenticated, function(req, res) {
+   res.render('index.ejs', {
+       info: req.flash('info'),
+       success: req.flash('success')
+   }); 
+});
 
-
-app.get('/', isAuthenticated, function(req,res)
+app.get('/login', isAuthenticated, function(req,res)
 {
     res.render('login.ejs', 
     {
@@ -18,7 +23,35 @@ app.get('/', isAuthenticated, function(req,res)
     });
 });
 
-app.post('/', function(req, res){
+app.get('/accounts', sessionAuthMiddleware, function(req, res) {
+   res.render('accounts.ejs', {
+       success: req.flash('success')
+   }); 
+});
+
+app.get('/feedback', sessionAuthMiddleware, function(req, res){
+   res.render('feedback.ejs', {}); 
+});
+
+app.get('/settings', sessionAuthMiddleware, function(req,res){
+   res.render('settings.ejs', {}); 
+});
+
+app.get('/feedbackresponse', sessionAuthMiddleware, function(req,res){
+   res.render('feedbackresponse.ejs', {}); 
+});
+
+app.post('/feedbackresponse', sessionAuthMiddleware, function(req,res){
+//   var fullname = req.query.fullname 
+//   var regarding = req.query.regarding;
+//   var feeling = req.query.feeling;
+//   var comments = req.query.comments;
+//   var recommend = req.query.recommend;
+//   var name = req.query.name;
+//   var comments2 = req.query.name;
+});
+
+app.post('/login', function(req, res){
     var username = req.param('username');
     var password = req.param('password');
     User.findOne({username:username}, function(err, user){
@@ -30,7 +63,7 @@ app.post('/', function(req, res){
        } else {
            if(user.password == password){
                req.session.user = user;
-               res.redirect('/FBauth');
+               res.redirect('/accounts');
            } else {
                req.flash("error", "Invalid Username/Password");
                res.redirect('/');
@@ -40,7 +73,7 @@ app.post('/', function(req, res){
 });
 
 app.get('/newuser', function(req, res){
-   res.render('newUser.ejs', {
+   res.render('signup.ejs', {
        error: req.flash("error")
        }); 
 });
@@ -73,6 +106,7 @@ app.post('/newuser', function(req, res) {
 app.get('/logout', function(req, res){
    req.session.user = null;
    req.user = null;
+   
    req.flash('info', "You have been logged out.");
    res.redirect('/');
 });

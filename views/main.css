@@ -1,0 +1,228 @@
+/*
+ CSS File for Final Project by Azadeh Safaie
+*/
+header, main, nav, footer, section, article, figure, figcaption, aside { 
+	display: block; 
+}
+body {
+	color: #59322B;
+	font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'DejaVu Sans', Verdana, sans-serif;
+	padding: 0px;
+	margin: 0px;
+	background-color: #eaeaea;
+}
+header{
+	height: 12%;
+	display: inline-block;
+	background-color: rgba(0,0,0,0.80);
+	position: fixed;
+	width: 100%;
+	top: 0;
+	color: rgba(239,64,35,1.0);
+	text-align: center;
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+	font-size: 100%;
+	margin-bottom:0;
+}
+nav {
+	position: fixed;
+	width: 6%;
+	top: 12%;
+	left: 0;
+	padding-top: 25px;
+	background-color: #090909;
+	font-size: 90%;
+	height: 100%;
+}
+.container{
+	width: 90%;
+	height: 100%;
+	position:relative;
+	left: 6%;
+	padding:5% 2% 0 2%;
+	margin-top: 0;
+}
+#indexhome{
+	margin-left: 3%;
+}
+#index{
+	text-align: right;
+	margin-left: 73%;
+}
+#main{
+	width: 40%;
+	padding: 0 25px 0 25px;
+	display: inline-block;
+	position: absolute;
+	left: 5%;
+	top: 100%;
+	text-align: justify;
+	border-left: 2px dotted #D1D1D1;
+	border-right: 2px dotted #D1D1D1;
+}
+#maintwo{
+	width: 40%;
+	float: right;
+	position: absolute;
+	left: 50%;
+	top: 100%;
+	padding: 0 25px 0 25px;
+	display: inline-block;
+	text-align: justify;
+	border-left: 2px dotted #D1D1D1;
+	border-right: 2px dotted #D1D1D1;
+}
+
+table {
+	display: inline-block;
+	margin-top: 1%;
+	width: auto;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+td {
+	width: 30%;
+	text-align: center;	
+	padding: 20px;
+}
+
+nav ul {
+	padding:0;
+	list-style-type:none;
+}
+a {
+	text-decoration: none;
+	font-family:'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'DejaVu Sans', Verdana, sans-serif;
+}
+a:link {
+	color: #494949;
+}
+a:visited {
+	color: #494949;
+}
+a:hover {
+	color: #3D3D3D;
+}
+
+#index a:link , #indexhome a:link, #indexhome a:visited, #index a:visited {
+	color: #EF4023;
+}
+#index a:hover , #indexhome a:hover {
+	color: #0B5CD8;
+}
+
+p,ol,ul,dl{
+	line-height: 150%;
+}
+h2{
+	color: #E8634E;
+	padding: 10px;
+	border-radius: 5px;
+}
+.news h2 {
+	color: #E8634E;
+	background-color: rgba(0,0,0,0.0);
+	padding: 10px;
+	border-radius: 5px;	
+}
+h3{
+	color: #2664ae;
+
+}
+.align-left {
+	float:left;
+	margin-right:2%;	
+}
+.comments {
+	margin-bottom: 2%;
+}
+.comments h3{
+	padding-top: 2%;
+	clear: right;
+}
+.comments p{
+	margin-top: 0;
+}
+.news p{
+	font-size: small;
+	text-align: justify;
+}
+
+nav li{
+	display: block;
+	font-weight:bold;
+	padding: 5px;
+	line-height: 2em;
+	margin-bottom: .5em;
+	text-align:center;
+} 
+nav li a span{
+	display: inline;
+	color: #2C2C2C;
+}
+nav li a:hover span{
+	display: inline;
+	color: white;
+}
+.mainbutton{
+	background-color: rgba(239,64,35,0.93);
+}
+.center{
+	text-align: center;
+}
+
+form {
+	padding: 10px;
+	background-color: rgba(0,0,0,0.20);
+	border-radius: 20px;
+	color: rgba(255,255,255,1.00);
+}
+.comments form {
+	color: #59322B;
+	background-color: transparent;
+	}
+#facebook {
+	position: fixed;
+	background-color:rgba(0,0,0,0.20);
+	display:inline-block;
+	width: 44%;
+	display: inline-block;
+	position: absolute;
+	left: 5%;
+	top: 100%;	
+	height: auto;
+	margin:0;
+	padding:0;
+}
+#facebook tr {
+	margin:0;
+	padding:0;
+}
+#facebook td {
+	text-align: left;
+	margin:0;
+	padding:0;
+}
+#twitter {
+	position: fixed;
+	background-color:rgba(0,0,0,0.20);
+	display:inline-block;
+	width: 44%;
+	float: right;
+	position: absolute;
+	left: 50%;
+	top: 100%;
+	height: auto;
+	margin:0;
+	padding:0;
+}
+#twitter tr {
+	margin:0;
+	padding:0;
+}
+#twitter td {
+	text-align: left;
+	margin:0;
+	padding:0;
+}

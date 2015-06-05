@@ -1,10 +1,23 @@
 <html>
-    <body>
-        <h1>Log In</h1>
+<head>
+<meta charset="utf-8">
+<title>SocialLink - Login</title>
+<link href="main.css" type="text/css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+<p><span id="indexhome"><a href="/">Home</a></span> <span id="index"><a href="/login">Log In</a> &nbsp; &nbsp; <a href="/newuser">Sign Up</a></span></p>
+
+<img src="images/Build-Your-Presence-on-Social-Media.jpg" width="100%" height="auto" alt=""/>
+
+<p class="center" style="color:rgba(239,64,35,0.93); font-weight:bold; font-size:150%; ">Login</p>
+<div class="center">
         <p class="error"><%= error %></p>
         <p class="success"><%= success %></p>
         <p class="info"><%= info %></p>
-        <form method="post" action="/">
+        <form method="post" action="/login">
             <p>
                 <label for="username">Username: </label>
                 <input name="username" type="text"/>
@@ -17,7 +30,11 @@
                 <input type="submit"/>
             </p>
         </form>
-        <a href="/newuser">New User</a>
 
-    </body>
+    
+</div>
+
+
+
+</body>
 </html>

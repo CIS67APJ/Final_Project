@@ -20,6 +20,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(loginApp);
 app.use(feedsApp);
+app.use(express.static('views'));
 
 
 mongoose.connect(config.database.url);

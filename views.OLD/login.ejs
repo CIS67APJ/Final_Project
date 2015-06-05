@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <h1>Log In</h1>
+        <p class="error"><%= error %></p>
+        <p class="success"><%= success %></p>
+        <p class="info"><%= info %></p>
+        <form method="post" action="/">
+            <p>
+                <label for="username">Username: </label>
+                <input name="username" type="text"/>
+            </p>
+            <p>
+                <label for="password">Password: </label>
+                <input name="password" type="password"/>
+            </p>
+            <p>
+                <input type="submit"/>
+            </p>
+        </form>
+        <a href="/newuser">New User</a>
+
+    </body>
+</html>
